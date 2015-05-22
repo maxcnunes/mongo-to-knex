@@ -8,6 +8,14 @@
     "test": "./node_modules/.bin/eslint lib/ spec/ && ./node_modules/.bin/mocha --compilers js:./compiler --timeout 30000 --reporter spec ./spec/**/*.spec.js",
     "watch-test": "./node_modules/.bin/mocha --compilers js:./compiler --timeout 30000 --watch --reporter spec ./spec/**/*.spec.js"
   },
+  "keywords": [
+    "mongo",
+    "knex"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxcnunes/mongo-to-knex"
+  },
   "dependencies": {
     "babel": "^5.2.17",
     "is-plain-object": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-2.0.0.tgz"
