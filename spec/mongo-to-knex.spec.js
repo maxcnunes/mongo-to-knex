@@ -9,6 +9,11 @@ describe('mongo-to-knex', function () {
     sinon.stub(this.knexQuery, 'where').returns(this.knexQuery);
   });
 
+  it('should apply a query with no operator (equal)', function () {
+    mongoToKnex({ age: 10 }, this.knexQuery);
+    expect(this.knexQuery.where.args[0]).to.eql([ 'age', '=', 10 ]);
+  });
+
   it('should apply a query with "$lt" operator', function () {
     mongoToKnex({ age: { $lt: 10 }}, this.knexQuery);
     expect(this.knexQuery.where.args[0]).to.eql([ 'age', '<', 10 ]);
