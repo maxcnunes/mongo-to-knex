@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import mongoToKnex from '../';
+import mongoToKnex from '../src';
 
 describe('mongo-to-knex', function () {
   beforeEach(function () {
