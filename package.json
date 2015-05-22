@@ -1,6 +1,6 @@
 {
   "name": "mongo-to-knex",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "mongo-to-knex",
   "main": "index.js",
   "author": "Max Claus Nunes <maxcnunes@gmail.com>",
