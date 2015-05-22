@@ -2,11 +2,13 @@
   "name": "mongo-to-knex",
   "version": "0.0.1",
   "description": "mongo-to-knex",
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "Max Claus Nunes <maxcnunes@gmail.com>",
   "scripts": {
-    "test": "./node_modules/.bin/eslint lib/ spec/ && ./node_modules/.bin/mocha --compilers js:./compiler --timeout 30000 --reporter spec ./spec/**/*.spec.js",
-    "watch-test": "./node_modules/.bin/mocha --compilers js:./compiler --timeout 30000 --watch --reporter spec ./spec/**/*.spec.js"
+    "compile": "babel --stage 0 -d lib/ src/",
+    "prepublish": "npm run compile",
+    "test": "eslint src/ spec/ && mocha --compilers js:./compiler --timeout 30000 --reporter spec ./spec/**/*.spec.js",
+    "watch-test": "eslint src/ spec/ && mocha --compilers js:./compiler --timeout 30000 --watch --reporter spec ./spec/**/*.spec.js"
   },
   "keywords": [
     "mongo",
@@ -17,10 +19,10 @@
     "url": "https://github.com/maxcnunes/mongo-to-knex"
   },
   "dependencies": {
-    "babel": "^5.2.17",
     "is-plain-object": "https://registry.npmjs.org/is-plain-object/-/is-plain-object-2.0.0.tgz"
   },
   "devDependencies": {
+    "babel": "^5.2.17",
     "babel-eslint": "^3.1.1",
     "chai": "^2.3.0",
     "eslint": "^0.21.0",
