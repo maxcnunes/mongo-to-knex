@@ -7,14 +7,14 @@ import OPERATORS from './operators';
  * @param  {Object} query : a query based on mongo standard query
  * @param  {Object} knex  : knex query builder
  */
-function applyMongoToKnex (query, knex) {
+function applyMongoToKnex (query, knex, columnName) {
   Object.keys(query).forEach((key) => {
     const value = query[key];
 
-    if (isPlainObject(value)) { return applyMongoToKnex(value, knex); }
+    if (isPlainObject(value)) { return applyMongoToKnex(value, knex, key); }
     if (!OPERATORS[key]) { return null; }
 
-    knex.where(key, OPERATORS[key], value);
+    knex.where(columnName, OPERATORS[key], value);
   });
 }
 
