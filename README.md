@@ -4,7 +4,7 @@ Applies mongo standard query to knex query builder.
 
 ## Available operators
 
-[Operators](http://raw.github.com/maxcnunes/mongo-to-knex/master/lib/operators.js)
+[Operators](https://github.com/maxcnunes/mongo-to-knex/blob/master/lib/operators.js)
 
 ## Installation
 
@@ -17,7 +17,7 @@ $ npm install mongo-to-knex
 ## Usage
 
 ```js
-var mongoToKnex = require('mongo-to-knext');
+var mongoToKnex = require('mongo-to-knex');
 
 // knex main object
 var knex = require('knex')({ /* knex config */ });
@@ -28,7 +28,7 @@ var knexQuery = knex('your-table-name');
 // your query on mongo standard
 var mongoQuery = { age: { $lt: 10 } };
 
-// apply mongo query to knex builder
+// applies mongo query to knex builder
 mongoToKnex(mongoQuery, knexQuery);
 
 // continue using the knex query normally
