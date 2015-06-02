@@ -30,6 +30,6 @@
     "sinon": "^1.14.1"
   },
   "peerDependencies": {
-    "knex": "^0.8.6"
+    "knex": "^0.7.3"
   }
 }
