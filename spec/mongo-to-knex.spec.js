@@ -4,7 +4,7 @@ import mongoToKnex from '../src';
 
 describe('mongo-to-knex', function () {
   beforeEach(function () {
-    const knex = require('knex')({});
+    const knex = require('knex')({ dialect: 'sqlite3' });
     this.knexQuery = knex('table');
     sinon.stub(this.knexQuery, 'where').returns(this.knexQuery);
   });
