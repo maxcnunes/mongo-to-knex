@@ -31,4 +31,14 @@ describe('mongo-to-knex', function () {
     mongoToKnex({ age: { $gte: 10 }}, this.knexQuery);
     expect(this.knexQuery.toString()).to.eql('select * from "table" where "age" >= 10');
   });
+
+  it('should apply a query with "$and" operator', function () {
+    mongoToKnex({ $and: [ { quantity: { $lt: 20 } }, { price: 10 } ] }, this.knexQuery);
+    expect(this.knexQuery.toString()).to.eql('select * from "table" where ("quantity" < 20 and "price" = 10)');
+  });
+
+  it('should apply a query with "$or" operator', function () {
+    mongoToKnex({ $or: [ { quantity: { $lt: 20 } }, { price: 10 } ] }, this.knexQuery);
+    expect(this.knexQuery.toString()).to.eql('select * from "table" where ("quantity" < 20 or "price" = 10)');
+  });
 });

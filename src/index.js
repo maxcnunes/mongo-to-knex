@@ -1,5 +1,18 @@
 import isPlainObject from 'is-plain-object';
-import OPERATORS from './operators';
+
+
+const OPERATORS = {
+  $lt: '<',
+  $lte: '<=',
+  $gt: '>',
+  $gte: '>='
+};
+
+
+const OPERATORS_KNEX_METHOD = {
+  $and: 'where',
+  $or: 'orWhere'
+};
 
 
 /**
@@ -7,18 +20,30 @@ import OPERATORS from './operators';
  * @param  {Object} query : a query based on mongo standard query
  * @param  {Object} knex  : knex query builder
  */
-function applyMongoToKnex (query, knex, parentKey) {
+export default function applyMongoToKnex (query, knex, parentKey, parentKnexMethodName) {
   Object.keys(query).forEach((key) => {
     const value = query[key];
 
     if (isPlainObject(value)) { return applyMongoToKnex(value, knex, key); }
 
+    const knexMethodName = OPERATORS_KNEX_METHOD[key];
+    if (knexMethodName) { return queryByMethod(knex, key, value, knexMethodName); }
+
     const column = parentKey || key;
     const operator = OPERATORS[key] || '=';
 
-    return knex.where(column, operator, value);
+    const methodName = parentKnexMethodName || 'where';
+    return knex[methodName](column, operator, value);
   });
 }
 
 
-export default applyMongoToKnex;
+function queryByMethod (knex, key, value, knexMethodName) {
+  if (!Array.isArray(value)) {
+    throw new Error(`${key} expect an array value`);
+  }
+
+  knex.where(function () {
+    value.forEach(item => applyMongoToKnex(item, this, null, knexMethodName));
+  });
+}
