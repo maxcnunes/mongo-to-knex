@@ -4,7 +4,7 @@ Applies mongo standard query to knex query builder.
 
 ## Available operators
 
-[Operators](https://github.com/maxcnunes/mongo-to-knex/blob/master/src/operators.js)
+Checkout the available operators in the [tests](https://github.com/maxcnunes/mongo-to-knex/blob/master/spec/mongo-to-knex.spec.js).
 
 ## Installation
 
