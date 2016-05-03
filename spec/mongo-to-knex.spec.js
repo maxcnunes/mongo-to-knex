@@ -12,6 +12,11 @@ describe('mongo-to-knex', function () {
     expect(this.knexQuery.toString()).to.eql('select * from "table" where "age" = 10');
   });
 
+  it('should apply a query with "$ne" operator', function () {
+    mongoToKnex({ age: { $ne: 10 } }, this.knexQuery);
+    expect(this.knexQuery.toString()).to.eql('select * from "table" where "age" <> 10');
+  });
+
   it('should apply a query with "$lt" operator', function () {
     mongoToKnex({ age: { $lt: 10 }}, this.knexQuery);
     expect(this.knexQuery.toString()).to.eql('select * from "table" where "age" < 10');

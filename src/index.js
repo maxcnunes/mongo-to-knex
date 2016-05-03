@@ -2,6 +2,7 @@ import isPlainObject from 'is-plain-object';
 
 
 const OPERATORS = {
+  $ne: '<>',
   $lt: '<',
   $lte: '<=',
   $gt: '>',
