@@ -30,6 +30,6 @@
     "sqlite3": "^3.0.9"
   },
   "peerDependencies": {
-    "knex": "^0.7.3"
+    "knex": ">= 0.7"
   }
 }
