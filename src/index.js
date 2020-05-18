@@ -44,7 +44,7 @@ function queryByMethod (knex, key, value, knexMethodName) {
     throw new Error(`${key} expect an array value`);
   }
 
-  knex.where(function () {
+  knex[knexMethodName].where(function () {
     value.forEach(item => applyMongoToKnex(item, this, null, knexMethodName));
   });
 }
